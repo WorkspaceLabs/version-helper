@@ -1,3 +1,5 @@
+After checkout, please run the following command.
+
 ```
 npm start
 ```
