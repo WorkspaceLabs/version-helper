@@ -14,17 +14,21 @@ declare const appRelease: AppReleaseApi;
 declare let toast: ToastMethod;
 declare let invokeMethod: (data: InvokeMessageData) => void;
 
+if (!appRelease.ruleDeletedWait) {
+    appRelease.loadVersionDeleteConfig();
+}
+
 export function selectRules() {
     const { items, minReleasedVersion } = getReleasedVersions();
 
     // No released version
     if (minReleasedVersion === undefined) return;
-
+    
     const selectedItems = items.filter(x => {
         if (isCustomRule(x)) return true;
         if (isInternal(x) || isEveryone(x)) return false;
 
-        return !isGreaterVersion(x.parsedVersion, minReleasedVersion);
+        return !isGreaterVersion(x.parsedVersion, minReleasedVersion) && x.parsedVersion.rawVersion !== minReleasedVersion.rawVersion;
     });
     const selectedIndies = selectedItems.map(x => x.index);
 
@@ -86,6 +90,11 @@ export function selectVersions() {
 
     const { minReleasedVersion } = getReleasedVersions();
     if (!minReleasedVersion) return;
+  
+    if(!appRelease.ruleDeletedWait) {
+        alert('Error: unable to retrieve ruleDeletedWait data');
+        return;
+    }
 
     const deleteWaitingDays = appRelease.ruleDeletedWait.days();
     const maxDeletableDate = addDays(appRelease.pageLoadTime.toDate(), -deleteWaitingDays);
@@ -272,7 +281,7 @@ function parseVersion(version: string): ParsedVersion {
         major: parseVersionNumber(tokens[0]),
         minor: parseVersionNumber(tokens[1]),
         patch: parseVersionNumber(tokens[2]),
-        version
+        rawVersion: version
     }
 }
 

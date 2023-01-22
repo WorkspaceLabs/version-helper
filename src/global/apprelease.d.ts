@@ -39,7 +39,7 @@ interface ParsedVersion {
     major: number;
     minor: number;
     patch: number;
-    version: string;
+    rawVersion: string;
 }
 
 interface DeleteVersionData {
@@ -59,6 +59,7 @@ interface AppReleaseApi {
     loadVersions(appName: string, appType: string): void;
     loadAllRules(appName: string): void;
     loadAuditLogs(): void;
+    loadVersionDeleteConfig(): void;
 }
 
 interface AppApi {
