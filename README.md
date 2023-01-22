@@ -2,6 +2,8 @@
 npm start
 ```
 
+Please select versioned iframe before execute the following script in DevTools console.
+
 ## Select deletable rules
 
 ```
