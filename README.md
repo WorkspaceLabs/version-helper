@@ -1,6 +1,6 @@
 ## Load helper module
 ```
-var h = await import('https://workspacelabs.github.io/version-helper/index.js?' + Date.now());
+var h = await import('https://workspacelabs.github.io/version-helper/index.js');
 ```
 
 ## Select deletable rules
