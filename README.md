@@ -1,16 +1,12 @@
-After checkout, please run the following command.
-
+## Load helper module
 ```
-npm start
+var h = await import('https://workspacelabs.github.io/version-helper/index.js?' + Date.now());
 ```
-
-Please select versioned iframe before execute the following script in DevTools console.
 
 ## Select deletable rules
 
 ```
-var versionManager = await import('http://127.0.0.1:8080/index.js?' + Date.now());
-versionManager.selectRules()
+h.selectRules()
 ```
 
 Review selected rule in `ALL RULES` table. You may need to scroll down to the bottom of this table to review all selected items.
@@ -18,17 +14,17 @@ Review selected rule in `ALL RULES` table. You may need to scroll down to the bo
 ## Delete selected rules
 
 ```
-versionManager.deleteRules()
+h.deleteRules()
 ```
 
 ## Select deletable versions
 
 ```
-versionManager.selectVersions()
+h.selectVersions()
 ```
 
 ## Delete selected versions
 
 ```
-versionManager.deleteVersions()
+h.deleteVersions()
 ```
