@@ -84,7 +84,7 @@ export function selectVersions() {
     // Make sure that versions are displayed without column sorting
     for (let i = 1; i < items.length; i++) {
         if (isGreaterVersion(items[i].parsedVersion, items[i - 1].parsedVersion)) {
-            throw 'Please remove sorting from `ALL RULES` table by reselecting the same app in `COMPONENTS` table.'
+            console.warn('Please remove sorting from `ALL RULES` table by reselecting the same app in `COMPONENTS` table.');
         }
     }
 
@@ -157,7 +157,7 @@ function getReleasedVersions() {
     // Make sure that versions are displayed without column sorting
     for (let i = 1; i < items.length; i++) {
         if (isGreaterVersion(items[i].parsedVersion, items[i - 1].parsedVersion)) {
-            throw 'Please remove sorting from `ALL RULES` table by reselecting the same app in `COMPONENTS` table.'
+            console.warn('Please remove sorting from `ALL RULES` table by reselecting the same app in `COMPONENTS` table.');
         }
     }
 
@@ -210,7 +210,7 @@ async function deleteRule(rule: RuleData, timeout: number): Promise<boolean> {
         console.error('Deleted rule error', rule.version, rule.uuid, errorMessage);
     }
     else {
-        console.info('Deleted rule', rule.version, rule.uuid)
+        console.info(`Deleted ${rule.version} rule for ${rule.uuid}`);
     }
 
     return result;
@@ -251,7 +251,7 @@ async function deleteVersion(version: ParsedVersionData, timeout: number): Promi
         console.error('Deleted version error', version.version, errorMessage);
     }
     else {
-        console.info('Deleted rule', version.version)
+        console.info(`Deleted ${version.version} version`);
     }
 
     return result;

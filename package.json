@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "npm i && npm run build && npx http-server ./src/build --cors",
+    "start": "npm i && npm run build && npm run serve",
+    "clean": "git clean -dfx",
     "build": "tsc --build",
     "watch": "tsc --build --watch",
-    "clean": "git clean -dfx"
+    "serve": "npx -y http-server@latest ./src/build --cors"
   },
   "devDependencies": {
     "@types/slickgrid": "~2.1.32",
